@@ -1,6 +1,7 @@
 package com.inc.currencyConverter.controller;
 
 import com.inc.currencyConverter.model.ExchangeRateResponse;
+import com.inc.currencyConverter.model.ExchangeTranactionRecord;
 import com.inc.currencyConverter.service.ConversionService;
 import com.inc.currencyConverter.service.PersistenceService;
 import com.inc.currencyConverter.utils.Validator;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.management.InvalidAttributeValueException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 public class CurrencyConverterController {
@@ -30,4 +32,8 @@ public class CurrencyConverterController {
         return rateResponse.getTotalCalculatedAmount();
     }
 
+    @GetMapping("/currency-convert/transactions")
+    public List<ExchangeTranactionRecord> listTransactions(){
+        return persistenceService.listTransactions();
+    }
 }
